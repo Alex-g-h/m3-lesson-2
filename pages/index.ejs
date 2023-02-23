@@ -9,6 +9,11 @@
   <title><%= title %></title>
 </head>
 <body>
+
+  <% if (created) { %>
+    <div class="alert alert-success">Note has been created!</div>
+  <% } %>
+
   <div class="container">
     <h1>This is working</h1>
 
@@ -20,15 +25,22 @@
       <button class="btn btn-primary" type="submit">Create</button>
     </form>
 
+    <% if (notes.length > 0) { %>
     <div class="card">
       <ul class="list-group">
         <% for (let i = 0; i < notes.length; i++) { %>
-        <li class="list-group-item">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
           <%= notes[i].title %>
+          <button class="btn btn-danger" data-type="remove" data-id="<%= notes[i].id %>">&times;</button>
         </li>
         <% } %>
       </ul>
     </div>
+    <% } else { %>
+      <p>No notes</p>
+    <% } %>
   </div>
+
+  <script src="/app.js"></script>
 </body>
 </html>
